@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_classscheduler_levelconflicts" default="compile.module.classscheduler_levelconflicts">
+  <dirname property="module.classscheduler_levelconflicts.basedir" file="${ant.file.module_classscheduler_levelconflicts}"/>
+  
+  <property name="module.jdk.home.classscheduler_levelconflicts" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.classscheduler_levelconflicts" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.classscheduler_levelconflicts" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.classscheduler_levelconflicts" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="classscheduler_levelconflicts.output.dir" value="${module.classscheduler_levelconflicts.basedir}/out/production/ClassScheduler_LevelConflicts"/>
+  <property name="classscheduler_levelconflicts.testoutput.dir" value="${module.classscheduler_levelconflicts.basedir}/out/test/ClassScheduler_LevelConflicts"/>
+  
+  <path id="classscheduler_levelconflicts.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="classscheduler_levelconflicts.module.production.classpath">
+    <path refid="${module.jdk.classpath.classscheduler_levelconflicts}"/>
+    <path refid="library.poi-3.classpath"/>
+    <path refid="library.ooxml-lib.classpath"/>
+  </path>
+  
+  <path id="classscheduler_levelconflicts.runtime.production.module.classpath">
+    <pathelement location="${classscheduler_levelconflicts.output.dir}"/>
+    <path refid="library.poi-3.classpath"/>
+    <path refid="library.ooxml-lib.classpath"/>
+  </path>
+  
+  <path id="classscheduler_levelconflicts.module.classpath">
+    <path refid="${module.jdk.classpath.classscheduler_levelconflicts}"/>
+    <pathelement location="${classscheduler_levelconflicts.output.dir}"/>
+    <path refid="library.poi-3.classpath"/>
+    <path refid="library.ooxml-lib.classpath"/>
+  </path>
+  
+  <path id="classscheduler_levelconflicts.runtime.module.classpath">
+    <pathelement location="${classscheduler_levelconflicts.testoutput.dir}"/>
+    <pathelement location="${classscheduler_levelconflicts.output.dir}"/>
+    <path refid="library.poi-3.classpath"/>
+    <path refid="library.ooxml-lib.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.classscheduler_levelconflicts">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.classscheduler_levelconflicts">
+    <patternset refid="excluded.from.module.classscheduler_levelconflicts"/>
+  </patternset>
+  
+  <path id="classscheduler_levelconflicts.module.sourcepath">
+    <dirset dir="${module.classscheduler_levelconflicts.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.classscheduler_levelconflicts" depends="compile.module.classscheduler_levelconflicts.production,compile.module.classscheduler_levelconflicts.tests" description="Compile module ClassScheduler_LevelConflicts"/>
+  
+  <target name="compile.module.classscheduler_levelconflicts.production" depends="register.custom.compilers" description="Compile module ClassScheduler_LevelConflicts; production classes">
+    <mkdir dir="${classscheduler_levelconflicts.output.dir}"/>
+    <javac2 destdir="${classscheduler_levelconflicts.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.classscheduler_levelconflicts}/javac">
+      <compilerarg line="${compiler.args.classscheduler_levelconflicts}"/>
+      <bootclasspath refid="classscheduler_levelconflicts.module.bootclasspath"/>
+      <classpath refid="classscheduler_levelconflicts.module.production.classpath"/>
+      <src refid="classscheduler_levelconflicts.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.classscheduler_levelconflicts"/>
+    </javac2>
+    
+    <copy todir="${classscheduler_levelconflicts.output.dir}">
+      <fileset dir="${module.classscheduler_levelconflicts.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.classscheduler_levelconflicts.tests" depends="register.custom.compilers,compile.module.classscheduler_levelconflicts.production" description="compile module ClassScheduler_LevelConflicts; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.classscheduler_levelconflicts" description="cleanup module">
+    <delete dir="${classscheduler_levelconflicts.output.dir}"/>
+    <delete dir="${classscheduler_levelconflicts.testoutput.dir}"/>
+  </target>
+</project>

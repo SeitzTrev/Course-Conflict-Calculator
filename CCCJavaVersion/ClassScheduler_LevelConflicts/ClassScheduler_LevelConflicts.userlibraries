@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name=".mylyn">
+    <archive path="/Users/Main/IPFWSchedulingProject/ClassScheduler_LevelConflicts/.metadata/.mylyn/tasks.xml.zip" />
+    <archive path="/Users/Main/IPFWSchedulingProject/ClassScheduler_LevelConflicts/.metadata/.mylyn/repositories.xml.zip" />
+  </library>
+  <library name="poi-3">
+    <archive path="/Users/Main/Documents/Java Resources/poi-3.12/poi-3.12-20150511.jar" />
+    <archive path="/Users/Main/Documents/Java Resources/poi-3.12/poi-ooxml-3.12-20150511.jar" />
+    <archive path="/Users/Main/Documents/Java Resources/poi-3.12/poi-examples-3.12-20150511.jar" />
+    <archive path="/Users/Main/Documents/Java Resources/poi-3.12/poi-excelant-3.12-20150511.jar" />
+    <archive path="/Users/Main/Documents/Java Resources/poi-3.12/poi-scratchpad-3.12-20150511.jar" />
+    <archive path="/Users/Main/Documents/Java Resources/poi-3.12/poi-ooxml-schemas-3.12-20150511.jar" />
+  </library>
+  <library name="ooxml-lib">
+    <archive path="/Users/Main/Documents/Java Resources/poi-3.12/ooxml-lib/xmlbeans-2.6.0.jar" />
+  </library>
+</eclipse-userlibraries>
+
