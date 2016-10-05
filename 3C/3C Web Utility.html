@@ -9,42 +9,55 @@
 			}
 		</style>
 		<script>
+		
+			//cell formatting
 			function tableLabels(el){
 				el.style.textAlign = "center";
 				el.style.borderBottom= "2px solid #444444";
 				el.style.borderTop= "2px solid #444444";
 				el.style.borderLeft= "2px solid #444444";
 				el.style.borderRight= "2px solid #444444";
-				el.style.backgroundColor= "#cccccc";
+				el.style.backgroundColor= "#BBBBBB";
 				el.style.height= "40px";
-				el.style.width= "100px";
+				el.style.minWidth= "100px";
 			}
+			
+			//cell formatting
 			function cells(el){
-				el.style.borderRigh= "1px dotted #000000";
+				el.style.borderRight= "1px dotted #000000";
 				el.style.textAlign= "center";
 				el.style.height= "10px";
-				el.style.width= "19px";
+				el.style.minWidth= "19px";
 			}
+			
+			//cell formatting
 			function leftCells(el){
 				el.style.borderRight= "2px solid #000000";
 				el.style.textAlign= "center";
 				el.style.height= "10px";
-				el.style.width= "18px";
+				el.style.minWidth= "18px";
 			}
+			
+			//cell formatting
 			function bottomCells(el){
 				el.style.borderRight= "1px dotted #000000";
 				el.style.borderBottom= "2px solid #000000";
 				el.style.textAlign= "center";
 				el.style.height= "10px";
-				el.style.width= "19px";
+				el.style.minWidth= "19px";
 			}
+			
+			//cell formatting
 			function bottomLeftCells(el){
 				el.style.borderRight= "2px solid #000000";
 				el.style.borderBottom= "2px solid #000000";
 				el.style.textAlign= "center";
 				el.style.height= "10px";
-				el.style.width= "19px";
+				el.style.minWidth= "19px";
 			}
+			
+			//create the table for manipulation
+			//
 			function tableCreate() {
 				var columnLabels = ['Time', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 				var hourLabels = ['6:00 AM', '7:00 AM', '8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM', '9:00 PM', '10:00 PM']
@@ -52,7 +65,6 @@
 				var tbl = document.createElement('table');
 				
 				tbl.style.width = '100%';
-				tbl.setAttribute('border', '1');
 				
 				var tbdy = document.createElement('tbody');
 				var trow = document.createElement('tr');
@@ -78,7 +90,7 @@
 									var td = document.createElement('td');
 									var l = document.createTextNode(label);
 									tableLabels(td);
-									td.style.backgroundColor= "#FFFFFF";
+									td.style.backgroundColor= "#EEEEEE";
 									td.setAttribute("colspan", 5);
 									td.setAttribute("rowspan", 12);
 									td.appendChild(l);
@@ -87,8 +99,11 @@
 							}else{
 								for (var k = 0; k < 5; k++){
 									var td = document.createElement('td');
+									var ID = (((j - 1) * 300) + (k * 2000) + (index * 12) + i);
+	//Comment out the next line to remove the ID labels from the cells
+									//td.appendChild(document.createTextNode(ID));
 									tr.appendChild(td);
-									td.id= (((j - 1) * 300) + (l * 2000) + (index * 12) + i)
+									td.id= ID;
 									if(k == 4){
 										if(i == 11){
 											bottomLeftCells(td);
@@ -109,7 +124,29 @@
 					index++;
 				});
 				tbl.appendChild(tbdy);
-				body.appendChild(tbl)
+				body.appendChild(tbl);
+			}
+			
+			
+			//edit this to add remove more mock data for the picture
+			function mockData(){
+				
+				document.getElementById(10).style.backgroundColor = "#95D595";
+				document.getElementById(2010).style.backgroundColor = "#000064";
+				document.getElementById(4010).style.backgroundColor = "#FCB930";
+				document.getElementById(6010).style.backgroundColor = "#E50000";
+				document.getElementById(8010).style.backgroundColor = "#F5F611";
+				document.getElementById(11).style.backgroundImage = "url('images/ConflictIconLevel100.png')";
+				document.getElementById(11).style.backgroundSize = "100px 100px";
+				document.getElementById(2011).style.backgroundImage = "url('images/ConflictIconLevel200.png')";
+				document.getElementById(2011).style.backgroundSize = "100px 100px";
+				document.getElementById(4011).style.backgroundImage = "url('images/ConflictIconLevel300.png')";
+				document.getElementById(4011).style.backgroundSize = "100px 100px";
+				document.getElementById(6011).style.backgroundImage = "url('images/ConflictIconLevel400.png')";
+				document.getElementById(6011).style.backgroundSize = "100px 100px";
+				document.getElementById(8011).style.backgroundImage = "url('images/ConflictIconLevel500.png')";
+				document.getElementById(8011).style.backgroundSize = "100px 100px";
+				
 			}
 		</script>
 	</head>
@@ -117,6 +154,7 @@
 		<h1>Course Conflict Calculator<br>*3C*</h1>
 		<script>
 			tableCreate();
+			mockData();
 		</script>
 	</body>
 </html>
