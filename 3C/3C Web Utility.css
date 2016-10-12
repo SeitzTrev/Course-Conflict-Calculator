@@ -1,0 +1,73 @@
+			body{
+				line-height: 1;
+				font-family: "Helvetica Neue", Helvetica, Arial, sans-serif, sans-serif;
+				font-size: 14px;
+				font-style: normal;
+				font-variant: normal;
+				font-weight: normal;
+				font-size-adjust: none;
+				font-stretch: normal;
+				margin: 0% 0% 0% 0%;
+				background-color: #9B9B9B;
+			}
+			.fixedHead{
+				position: fixed;
+				top: 0;
+				background-color: #9B9B9B;
+				width: 100%;
+			}
+			.header{
+				font-size: xx-large;
+				font-weight: bold;
+				text-align: center;
+				padding: 1%;
+				margin: 0% 0% 0% 0%;
+				background-color: #002982;
+				width: 100%;
+			}
+			.fileForm{
+				padding: 1% 0% 1% 0%;
+				margin: 1% 0% 1% 0%;
+				text-align: center;
+				width: 100%;
+				background-color: #0F171D;
+			}
+			.fileTextbox{
+				min-width: 400px;
+			}
+			.checkbox{
+				font-size: 20px;
+			}
+			.content{
+				margin-top: 11%;
+				padding: 1%;
+				height: 700px;
+				width: 100%;
+			}
+			.table{
+				display: inline-block;
+				min-width: 630px;
+			}
+			.info{
+				background-color: yellow;
+				display: inline-block;
+				height: 630px;
+				min-width: 400px;
+			}
+			.toggles{
+				padding: 2%;
+				height: 4%;
+				text-align: center;
+			}
+			.area{
+				width: 95%;
+				padding: 2% 1% 2% 1%;
+				text-align: center;
+			}
+			.footer{
+				position: fixed;
+				bottom: 0;
+				text-align: center;
+				background-color: #002982;
+				width: 100%;
+			}
