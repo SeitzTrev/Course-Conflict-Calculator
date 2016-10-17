@@ -1,0 +1,101 @@
+body 
+{ 
+	background-color:#B3B3B3;
+	line-height: 140%; 
+    margin:0; 
+	border:0; 
+	padding:0;
+}
+
+div#centerpage
+{  
+	margin-left: auto; 
+	margin-right: auto; 
+	width: 80%;
+	border: 2px solid darkblue; 
+	border-radius: 16px;
+	background-color: #E3E3E3;
+	overflow-x: hidden;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+	text-align: center;
+}
+
+nav li {
+	display: inline;
+}
+
+nav li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+	font-size: xx-large;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: darkblue;
+}
+
+footer
+{
+	text-align: center;
+	color: white;
+	bottom: 0;
+	background: linear-gradient(darkblue, #000033); 
+	width: 100%;
+	overflow: auto;
+}
+header.banner
+{ 
+	background: linear-gradient(#000033, darkblue); 
+	overflow: auto;
+	border-bottom: 2px solid black;
+	margin-bottom: 20px;
+}
+
+img
+{
+	float: right;
+	width: 280px;
+	height: 304x;
+	margin: 20px;
+	overflow: auto;
+}
+
+header.banner > section.logo
+{  
+	font-family: "Times New Roman", Times, serif;
+	text-align: center;
+	color: white;
+	font-size: xx-large;
+	height: 60px;
+	padding-top: 60px;
+}
+
+section#main
+{  
+	background-color: lightblue;
+}
+
+section#main > article 
+{  
+   width: 50%;
+   background-color: #efd;
+   margin-left: auto;
+   margin-right: auto;
+   padding: 60x;
+   float: middle;
+
+}
+
+p, h3
+{
+	padding: 20px;
+}
