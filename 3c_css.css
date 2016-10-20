@@ -17,6 +17,33 @@ div#centerpage
 	background-color: #E3E3E3;
 	overflow-x: hidden;
 }
+
+header.banner
+{ 
+	background: linear-gradient(#000033, darkblue); 
+	overflow: auto;
+	border-bottom: 2px solid black;
+	margin-bottom: 20px;
+}
+
+
+header.banner > section.logo
+{  
+	font-family: "Times New Roman", Times, serif;
+	text-align: center;
+	color: white;
+	font-size: xx-large;
+	height: 60px;
+	padding-top: 60px;
+}
+
+img
+{
+	padding-left: 30px;
+	padding-right: 30px;
+	
+}
+
 nav ul {
     list-style-type: none;
     margin: 0;
@@ -43,40 +70,9 @@ nav li a:hover {
     background-color: darkblue;
 }
 
-footer
+p, h3
 {
-	text-align: center;
-	color: white;
-	bottom: 0;
-	background: linear-gradient(darkblue, #000033); 
-	width: 100%;
-	overflow: auto;
-}
-header.banner
-{ 
-	background: linear-gradient(#000033, darkblue); 
-	overflow: auto;
-	border-bottom: 2px solid black;
-	margin-bottom: 20px;
-}
-
-img
-{
-	float: right;
-	width: 280px;
-	height: 304x;
-	margin: 20px;
-	overflow: auto;
-}
-
-header.banner > section.logo
-{  
-	font-family: "Times New Roman", Times, serif;
-	text-align: center;
-	color: white;
-	font-size: xx-large;
-	height: 60px;
-	padding-top: 60px;
+	padding: 20px;
 }
 
 section#main
@@ -95,7 +91,4 @@ section#main > article
 
 }
 
-p, h3
-{
-	padding: 20px;
-}
+
