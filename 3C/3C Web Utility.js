@@ -27,7 +27,7 @@
 			
 			//cell formatting
 			function bottomCells(el){
-				el.style.borderRight= "1px dotted #000000";
+// 				el.style.borderRight= "1px dotted #000000";
 				el.style.borderBottom= "2px solid #000000";
 				el.style.textAlign= "center";
 				el.style.minWidth= "14px";
@@ -83,10 +83,9 @@
 									var l = document.createTextNode(label);
 									tableLabels(td);
 									td.style.backgroundColor= "#EEEEEE";
-									td.style.height = "40";
+									td.style.height = "50px";
 									td.setAttribute("colspan", 5);
 									td.setAttribute("rowspan", 12);
-									td.style.height= "50px";
 									td.appendChild(l);
 									tr.appendChild(td);
 								}
