@@ -4,16 +4,16 @@
 				el.style.textAlign = "center";
 				el.style.border= "2px solid #444444";
 				el.style.backgroundColor= "#BBBBBB";
-				el.style.height= "30px";
-				el.style.maxWidth= "90px";
-				el.style.minWidth= "90px";
+				el.style.height= "25px";
+				el.style.maxWidth= "80px";
+				el.style.minWidth= "80px";
 				//el.style.fontSize = "medium";
 
 			}
 			
 			//cell formatting
 			function cells(el){
-				el.style.borderRight= "1px dotted #444444";
+// 				el.style.borderRight= "1px dotted #444444";
 				el.style.textAlign= "center";
 				el.style.minWidth= "14px";
 			}
@@ -35,7 +35,7 @@
 			
 			//cell formatting
 			function bottomLeftCells(el){
-				el.style.borderRight= "2px solid #000000";
+// 				el.style.borderRight= "2px solid #000000";
 				el.style.borderBottom= "2px solid #000000";
 				el.style.textAlign= "center";
 				el.style.minWidth= "13px";
@@ -49,14 +49,14 @@
 				var body = document.getElementsByTagName('body')[0];
 				var tbl = document.createElement('table');
 				
-				tbl.style.maxWidth = "700px";
+				tbl.style.maxWidth = "500px";
 				tbl.style.backgroundColor = "white"
 				tbl.style.borderSpacing = "0";
 				tbl.style.textAlign = "center"
 				tbl.style.marginLeft = "auto";
 				tbl.style.marginRight = "auto";
 				tbl.style.width = "95%";
-				tbl.style.minWidth = "700px";
+				tbl.style.minWidth = "500px";
 				
 				var tbdy = document.createElement('tbody');
 				var trow = document.createElement('tr');
