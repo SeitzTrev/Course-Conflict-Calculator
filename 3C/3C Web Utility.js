@@ -35,7 +35,7 @@
 			
 			//cell formatting
 			function bottomLeftCells(el){
-// 				el.style.borderRight= "2px solid #000000";
+				el.style.borderRight= "2px solid #000000";
 				el.style.borderBottom= "2px solid #000000";
 				el.style.textAlign= "center";
 				el.style.minWidth= "13px";
