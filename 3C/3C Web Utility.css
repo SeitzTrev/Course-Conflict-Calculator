@@ -118,7 +118,7 @@ textarea
 {
 	margin-left: 2%; 
 	margin-right: 2%; 
-	text-align: left;
+	float: left;
 }
 
 .info
@@ -127,7 +127,7 @@ textarea
 	margin-bottom: 2%;
 	margin-left: auto;
 	margin-right: auto;
-	width: 95%;
+	width: 40%;
 	border: 2px solid darkblue; 
 	border-radius: 16px;
 	background-color: #AAAAFF;
