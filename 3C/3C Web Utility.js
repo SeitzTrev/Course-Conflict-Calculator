@@ -83,7 +83,7 @@
 									var l = document.createTextNode(label);
 									tableLabels(td);
 									td.style.backgroundColor= "#EEEEEE";
-									td.style.height = "50px";
+									td.style.height = "25px";
 									td.setAttribute("colspan", 5);
 									td.setAttribute("rowspan", 12);
 									td.appendChild(l);
