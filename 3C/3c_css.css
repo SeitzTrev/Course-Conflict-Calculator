@@ -64,6 +64,11 @@ nav li a:hover {
     background-color: darkblue;
 }
 
+#example{
+	text-align: center;
+	min-width: 60%;
+}
+
 p, h3
 {
 	padding: 20px;
