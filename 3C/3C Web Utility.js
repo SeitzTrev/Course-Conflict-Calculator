@@ -5,8 +5,8 @@
 				el.style.border= "2px solid #444444";
 				el.style.backgroundColor= "#BBBBBB";
 				el.style.height= "25px";
-				el.style.maxWidth= "80px";
-				el.style.minWidth= "80px";
+				el.style.maxWidth= "70px";
+				el.style.minWidth= "70px";
 				//el.style.fontSize = "medium";
 
 			}
@@ -83,7 +83,7 @@
 									var l = document.createTextNode(label);
 									tableLabels(td);
 									td.style.backgroundColor= "#EEEEEE";
-									td.style.height = "70";
+									td.style.height = "40";
 									td.setAttribute("colspan", 5);
 									td.setAttribute("rowspan", 12);
 									td.style.height= "50px";
