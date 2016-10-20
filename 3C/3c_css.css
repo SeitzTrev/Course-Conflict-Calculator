@@ -66,9 +66,8 @@ nav li a:hover {
 
 #example{
 	text-align: center;
-	min-width: 95%;
-	max-width: 95%;
-	margin: auto;
+	min-width: 100%;
+	max-width: 100%;
 }
 
 p, h3
