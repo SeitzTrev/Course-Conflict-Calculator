@@ -131,6 +131,8 @@ textarea
 	border: 2px solid darkblue; 
 	border-radius: 16px;
 	background-color: #AAAAFF;
+	float: right;
+	font-size: 25;
 }
 
 .toggles
