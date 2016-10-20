@@ -15,7 +15,8 @@
 			function cells(el){
 // 				el.style.borderRight= "1px dotted #444444";
 				el.style.textAlign= "center";
-				el.style.minWidth= "14px";
+				el.style.minWidth= "12px";
+				el.style.maxWidth= "12px";
 			}
 			
 			//cell formatting
