@@ -52,6 +52,11 @@
 				tbl.style.maxWidth = "700px";
 				tbl.style.backgroundColor = "white"
 				tbl.style.borderSpacing = "0";
+				tbl.style.textAlign = "center"
+				tbl.style.marginLeft = "auto";
+				tbl.style.marginRight = "auto";
+				tbl.style.width = "95%";
+				tbl.style.minWidth = "700px";
 				
 				var tbdy = document.createElement('tbody');
 				var trow = document.createElement('tr');

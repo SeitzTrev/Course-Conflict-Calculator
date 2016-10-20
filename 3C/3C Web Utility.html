@@ -7,28 +7,40 @@
 		<script type="text/javascript" src="3C Web Utility.js"></script>
 	</head>
 	<body>
-		<div class = "fixedHead">
-			<div class = "header">Course Conflict Calculator<br>*3C*</div>
+		<div>
+			<header class="banner">
+				<section class="logo">Course Conflict Calculator Home</section><br/>
+				<nav>
+					<ul>
+						<li><a href="3c_homepage.html">Home</a></li>
+						<li><a href="3C Web Utility.html">3C Calculator</a></li>
+						<!--<li><a href="http://www.ipfw.edu">IPFW</a></li>-->
+					</ul>
+				</nav>
+			</header>
+		</div>
+		<div class = "content">
+		
+			<!--area to select or drop excel file-->
 			<div class = "fileForm">
 				<input class = "fileButton" type="file" id = "fileUploadS" style = "background-color: white;">
 				<input class = "fileTextbox" type = "text" id = "fileUploadM">
 			</div>
-		</div>
-		<div class = "content">
+			
+			<!--insert table here-->
 			<div class = "table" id = "conCell"></div>
+			
+			<!--Text area to display conficts as text and other toggles-->
 			<div class = "info">
 				<div class = "toggles">
 					<label class = "checkbox"><input type = "checkbox" id = "nCon"/> Non Conflicts </label>
 					<label class = "checkbox"><input type = "checkbox" id = "con"/> Conflicts </label>
 				</div>
 				<div class = "conflicts">
-					<textarea class = "area" id = "conSum">
+					<textarea id = "conSum">
 					</textarea>
 				</div>
 			</div>
-		</div>
-		<div class = "footer">
-			&copy; 2016 TTD 3C, inc.
 		</div>
 	</body>
 	<script>
