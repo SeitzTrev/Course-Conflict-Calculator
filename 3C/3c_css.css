@@ -68,6 +68,7 @@ nav li a:hover {
 	text-align: center;
 	min-width: 95%;
 	max-width: 95%;
+	margin: auto;
 }
 
 p, h3
