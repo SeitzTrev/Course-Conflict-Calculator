@@ -5,6 +5,7 @@
 		<title>Course Conflict Calculator<br>*3C*</title>
 		<link rel = "stylesheet" href = "3C Web Utility.css" type = "text/css" title = "float layout style">
 		<script type="text/javascript" src="3C Web Utility.js"></script>
+		<script lang="javascript" src="js-xlsx-master/dist/xlsx.core.min.js"></script>
 	</head>
 	<body>
 		<div>
@@ -23,8 +24,8 @@
 		
 			<!--area to select or drop excel file-->
 			<div class = "fileForm">
-				<input class = "fileButton" type="file" id = "fileUploadS" style = "background-color: white;">
-				<input class = "fileTextbox" type = "text" id = "fileUploadM">
+				<input class = "fileButton" type="file" id = "fileselect" style = "background-color: white;">
+				<input class = "fileTextbox" type = "text" id = "drop" disabled>
 			</div>
 			
 			<!--insert table here-->
@@ -37,14 +38,19 @@
 					<label class = "checkbox"><input type = "checkbox" id = "con"/> Conflicts </label>
 				</div>
 				<div class = "conflicts">
-					<textarea id = "conSum">
+					<textarea id = "courseInfoText" disabled>
 					</textarea>
 				</div>
 			</div>
 		</div>
+		
+		<script src="Course.js"></script>
+		<script src="Conflict.js"></script>
+		<script src="TimeSegment.js"></script>
+		<script src="ParseExcel.js"></script>
+		
 	</body>
-	<script>
 		tableCreate();
-		mockData();
+<!-- 		mockData(); -->
 	</script>
 </html>

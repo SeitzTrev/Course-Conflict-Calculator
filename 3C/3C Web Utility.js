@@ -44,7 +44,7 @@
 			//create the table for manipulation
 			//
 			function tableCreate() {
-				var columnLabels = ['Time', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+				var columnLabels = ['Time', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
 				var hourLabels = ['6:00 AM', '7:00 AM', '8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM', '9:00 PM', '10:00 PM']
 				var body = document.getElementsByTagName('body')[0];
 				var tbl = document.createElement('table');
@@ -76,7 +76,7 @@
 						var tr = document.createElement('tr');
 						tbdy.appendChild(tr);
 						
-						for (var j = 0; j < 7; j++){
+						for (var j = 0; j < 6; j++){
 							if(j == 0){
 								if(i == 0){
 									var td = document.createElement('td');
