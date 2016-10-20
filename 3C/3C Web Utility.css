@@ -110,7 +110,7 @@ textarea
 	border-radius: 16px;
 	background-color: #E3E3E3;
 	overflow-x: hidden;
-	min-width: 900px;
+	min-width: 1000px;
 	text-align: center;
 }
 
@@ -120,6 +120,7 @@ textarea
 	margin-left: 2%; 
 	margin-right: 2%; 
 	float: left;
+	min-width: 500px;
 	width:40%
 }
 
@@ -128,8 +129,9 @@ textarea
 	margin-top: 2%;
 	margin-bottom: 2%;
 	margin-left: 0%;
-	margin-right: 5%;
+	margin-right: 10%;
 	width: 40%;
+	min-width: 350px;
 	border: 2px solid darkblue; 
 	border-radius: 16px;
 	background-color: #AAAAFF;
