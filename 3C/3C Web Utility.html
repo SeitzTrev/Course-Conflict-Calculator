@@ -41,6 +41,16 @@
 					<textarea id = "courseInfoText" disabled>
 					</textarea>
 				</div>
+				<div class = "legend">
+					<h3>Directions:</h3><b>
+					<p>Load a CSV file by either dragging into the empty box at the top of the screen,
+					or select the path using the button "Browse".<p>
+					<p>Click on the squares in the picture to display conflict information.</p>
+					<p>Click on the checkboxes at the top to display only conflicts, only non-conflicts, both or neither.</p>
+					<p>Conflict Key:</p>
+					<p>Conflicts: Black, Level 100 Courses: Green, Level 200 Courses: Blue, Level 300 Courses: Orange, Level 400 Courses: Red,
+					Level 500 Courses: Yellow</p></b>
+				</div>
 			</div>
 		</div>
 		
@@ -56,8 +66,7 @@
 
 	function updatePage()
 	{
-		main();
-		location.reload();
+		populateTable();
 	}
 
 	</script>

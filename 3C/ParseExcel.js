@@ -3,6 +3,8 @@ function handleDrop(e) {
   e.stopPropagation();
   e.preventDefault();
   var files = e.dataTransfer.files;
+  fileHandler(files);
+  /*
   var i,f;
   for (i = 0, f = files[i]; i != files.length; ++i) {
     var reader = new FileReader();
@@ -10,15 +12,17 @@ function handleDrop(e) {
     reader.onload = function(e) {
       var data = e.target.result;
 
-      /* if binary string, read with type 'binary' */
-      var workbook = XLSX.read(data, {type: 'binary'});
-
-      main(workbook);
+       if binary string, read with type 'binary' 
+      
+	var workbook = XLSX.read(data, {type: 'binary'});
+	*/
+    
       
       
-    };
-    reader.readAsBinaryString(f);
-  }
+    //};
+	
+	
+  //}
 }
 
 function handleDragover(e) {
@@ -27,6 +31,7 @@ function handleDragover(e) {
 	e.dataTransfer.dropEffect = 'copy';
 }
 
+//Variables to drag and drop the files and allow 'drop' to detect these changes.
 var drop = document.getElementById("drop");
 drop.addEventListener('dragenter', handleDragover, false);
 drop.addEventListener('dragover', handleDragover, false);
@@ -34,7 +39,9 @@ drop.addEventListener('drop', handleDrop, false);
 
 function handleFile(e) {
   var files = e.target.files;
+  /*
   var i,f;
+  
   for (i = 0, f = files[i]; i != files.length; ++i) {
     var reader = new FileReader();
     var name = f.name;
@@ -47,6 +54,34 @@ function handleFile(e) {
     };
     reader.readAsBinaryString(f);
   }
+  */
+  
+  fileHandler(files);
+}
+
+//This will store the form temporarily so that we can update it each time the user plays around with the checkboxes.
+
+function fileHandler(files)
+{		
+		var i,f;
+		var reader;
+		var name;
+		//We want to process multiple files?
+		for (i = 0, f = files[i]; i != files.length; ++i) 
+		{
+			reader = new FileReader();
+			name = f.name;
+			reader.onload = function(e) 
+			{
+				var data = e.target.result;
+
+				/* if binary string, read with type 'binary' */
+				var workbook = XLSX.read(data, {type: 'binary'});
+				main(workbook);
+			};
+		
+			reader.readAsBinaryString(f);
+		}
 }
 var fileselect = document.getElementById("fileselect");
 fileselect.addEventListener('change', handleFile, false);
@@ -103,10 +138,6 @@ function parseCourseData(workbook){
     
     return courses;
 }
-
-
-
-
 
 function createTimeSegments(courses){
   //Create all TimeSegments for a day column of the table
@@ -188,7 +219,11 @@ function populateTable(timeSegments){
         var conflicts = timeSegment.conflicts;
         var nonConflictCourses = timeSegment.nonConflictCourses;
 		
-		
+		/*
+		var nConBox = document.getElmentById("nCon");
+		var conBox  = document.getElementById("con");
+		*/
+
 		if (document.getElementById("nCon").checked && !document.getElementById("con").checked)
 		{
 			conflicts = [];

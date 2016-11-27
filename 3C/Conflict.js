@@ -20,3 +20,4 @@ function Conflict(course1, course2, day, startTime, endTime){
         return new Array(course1, course2);
     }
 }
+
