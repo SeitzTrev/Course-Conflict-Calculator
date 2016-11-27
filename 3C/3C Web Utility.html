@@ -34,8 +34,8 @@
 			<!--Text area to display conficts as text and other toggles-->
 			<div class = "info">
 				<div class = "toggles">
-					<label class = "checkbox"><input type = "checkbox" id = "nCon"/> Non Conflicts </label>
-					<label class = "checkbox"><input type = "checkbox" id = "con"/> Conflicts </label>
+					<label class = "checkbox"><input type = "checkbox" id = "nCon" onclick="updatePage()"/> Non Conflicts </label>
+					<label class = "checkbox"><input type = "checkbox" id = "con" onclick="updatePage()"/> Conflicts </label>
 				</div>
 				<div class = "conflicts">
 					<textarea id = "courseInfoText" disabled>
@@ -53,5 +53,12 @@
 	<script>
 		tableCreate();
 //  		mockData();
+
+	function updatePage()
+	{
+		main();
+		location.reload();
+	}
+
 	</script>
 </html>

@@ -187,6 +187,17 @@ function populateTable(timeSegments){
         var setLeftBorder = false;
         var conflicts = timeSegment.conflicts;
         var nonConflictCourses = timeSegment.nonConflictCourses;
+		
+		
+		if (document.getElementById("nCon").checked && !document.getElementById("con").checked)
+		{
+			conflicts = [];
+		}
+		else if (!document.getElementById("nCon").checked && document.getElementById("con").checked)
+		{
+			nonConflictCourses = [];
+		}
+		
         if (conflicts.length > 0){
           // tableCell.style.backgroundImage = "url(" + levelIcons[timeSegment.level] + ")";
           tableCell.style.backgroundColor = "black";
@@ -244,7 +255,7 @@ function populateTable(timeSegments){
 function displayCourseInfo(tableCell){
   var coursesOrConflicts;
   var timeSegment = tableCell.timeSegment;
-  
+ 
   if (timeSegment.conflicts.length > 0){
     coursesOrConflicts = timeSegment.conflicts;
   }
@@ -261,3 +272,5 @@ function displayCourseInfo(tableCell){
   var textbox = document.getElementById("courseInfoText");
   textbox.value = courseData;
 }
+
+
