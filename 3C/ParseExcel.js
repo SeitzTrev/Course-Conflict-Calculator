@@ -1,4 +1,7 @@
 /* set up drag-and-drop event */
+
+var evilGlobal;
+
 function handleDrop(e) {
   e.stopPropagation();
   e.preventDefault();
@@ -71,17 +74,31 @@ function fileHandler(files)
 		{
 			reader = new FileReader();
 			name = f.name;
+			
 			reader.onload = function(e) 
 			{
+			
 				var data = e.target.result;
-
+				if (evilGlobal != null)
+				{
+					evilGlobal = null;
+				}
+				evilGlobal = data;
 				/* if binary string, read with type 'binary' */
 				var workbook = XLSX.read(data, {type: 'binary'});
 				main(workbook);
 			};
-		
+			
 			reader.readAsBinaryString(f);
 		}
+}
+
+function updater()
+{
+	//remove the child node.
+	document.getElementById("conCell").removeFirstChild;
+	tableCreate();
+	main(XLSX.read(evilGlobal, {type: 'binary'}));
 }
 var fileselect = document.getElementById("fileselect");
 fileselect.addEventListener('change', handleFile, false);
@@ -232,6 +249,11 @@ function populateTable(timeSegments){
 		{
 			nonConflictCourses = [];
 		}
+		if(!document.getElementById("nCon").checked && !document.getElementById("con").checked)
+		{
+			nonConflictCourses = [];
+			conflicts = [];
+		}
 		
         if (conflicts.length > 0){
           // tableCell.style.backgroundImage = "url(" + levelIcons[timeSegment.level] + ")";
@@ -308,4 +330,7 @@ function displayCourseInfo(tableCell){
   textbox.value = courseData;
 }
 
-
+function clearTable()
+{
+	
+}
