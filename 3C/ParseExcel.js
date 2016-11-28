@@ -1,6 +1,6 @@
 /* set up drag-and-drop event */
 
-var evilGlobal;
+var evilGlobal = null;
 
 function handleDrop(e) {
   e.stopPropagation();
@@ -66,6 +66,11 @@ function handleFile(e) {
 
 function fileHandler(files)
 {		
+		//To ensure that the table is clean before we load a new file, check to see if the global value contains something.
+		if(evilGlobal != null)
+		{
+			clearTable();
+		}
 		var i,f;
 		var reader;
 		var name;
@@ -95,9 +100,7 @@ function fileHandler(files)
 
 function updater()
 {
-	//remove the child node.
-	document.getElementById("conCell").removeFirstChild;
-	tableCreate();
+	clearTable();
 	main(XLSX.read(evilGlobal, {type: 'binary'}));
 }
 var fileselect = document.getElementById("fileselect");
@@ -332,5 +335,6 @@ function displayCourseInfo(tableCell){
 
 function clearTable()
 {
-	
+	document.getElementById("conCell").removeChild(document.getElementById("conCell").childNodes[0]);
+	tableCreate();
 }
