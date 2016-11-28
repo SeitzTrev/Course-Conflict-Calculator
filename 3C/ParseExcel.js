@@ -1,31 +1,13 @@
 /* set up drag-and-drop event */
 
-var evilGlobal = null;
+
 
 function handleDrop(e) {
   e.stopPropagation();
   e.preventDefault();
   var files = e.dataTransfer.files;
   fileHandler(files);
-  /*
-  var i,f;
-  for (i = 0, f = files[i]; i != files.length; ++i) {
-    var reader = new FileReader();
-    var name = f.name;
-    reader.onload = function(e) {
-      var data = e.target.result;
-
-       if binary string, read with type 'binary' 
-      
-	var workbook = XLSX.read(data, {type: 'binary'});
-	*/
-    
-      
-      
-    //};
-	
-	
-  //}
+  
 }
 
 function handleDragover(e) {
@@ -42,39 +24,16 @@ drop.addEventListener('drop', handleDrop, false);
 
 function handleFile(e) {
   var files = e.target.files;
-  /*
-  var i,f;
-  
-  for (i = 0, f = files[i]; i != files.length; ++i) {
-    var reader = new FileReader();
-    var name = f.name;
-    reader.onload = function(e) {
-      var data = e.target.result;
-
-      var workbook = XLSX.read(data, {type: 'binary'});
-
-      main(workbook);
-    };
-    reader.readAsBinaryString(f);
-  }
-  */
-  
   fileHandler(files);
 }
 
-//This will store the form temporarily so that we can update it each time the user plays around with the checkboxes.
-
 function fileHandler(files)
 {		
-		//To ensure that the table is clean before we load a new file, check to see if the global value contains something.
-		if(evilGlobal != null)
-		{
-			clearTable();
-		}
+		
 		var i,f;
 		var reader;
 		var name;
-		//We want to process multiple files?
+	
 		for (i = 0, f = files[i]; i != files.length; ++i) 
 		{
 			reader = new FileReader();
@@ -84,11 +43,7 @@ function fileHandler(files)
 			{
 			
 				var data = e.target.result;
-				if (evilGlobal != null)
-				{
-					evilGlobal = null;
-				}
-				evilGlobal = data;
+				
 				/* if binary string, read with type 'binary' */
 				var workbook = XLSX.read(data, {type: 'binary'});
 				main(workbook);
@@ -98,11 +53,7 @@ function fileHandler(files)
 		}
 }
 
-function updater()
-{
-	clearTable();
-	main(XLSX.read(evilGlobal, {type: 'binary'}));
-}
+
 var fileselect = document.getElementById("fileselect");
 fileselect.addEventListener('change', handleFile, false);
 
@@ -239,25 +190,6 @@ function populateTable(timeSegments){
         var conflicts = timeSegment.conflicts;
         var nonConflictCourses = timeSegment.nonConflictCourses;
 		
-		/*
-		var nConBox = document.getElmentById("nCon");
-		var conBox  = document.getElementById("con");
-		*/
-
-		if (document.getElementById("nCon").checked && !document.getElementById("con").checked)
-		{
-			conflicts = [];
-		}
-		else if (!document.getElementById("nCon").checked && document.getElementById("con").checked)
-		{
-			nonConflictCourses = [];
-		}
-		if(!document.getElementById("nCon").checked && !document.getElementById("con").checked)
-		{
-			nonConflictCourses = [];
-			conflicts = [];
-		}
-		
         if (conflicts.length > 0){
           // tableCell.style.backgroundImage = "url(" + levelIcons[timeSegment.level] + ")";
           tableCell.style.backgroundColor = "black";
@@ -331,10 +263,4 @@ function displayCourseInfo(tableCell){
   
   var textbox = document.getElementById("courseInfoText");
   textbox.value = courseData;
-}
-
-function clearTable()
-{
-	document.getElementById("conCell").removeChild(document.getElementById("conCell").childNodes[0]);
-	tableCreate();
 }

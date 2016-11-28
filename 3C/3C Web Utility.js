@@ -156,3 +156,59 @@
 				document.getElementById(8011).style.backgroundSize = imgSize;
 				
 			}
+			
+function updater()
+{
+//Load the table.
+	var table = document.getElementById("conCell").childNodes[0];
+	var nCon = document.getElementById("nCon");
+	var con = document.getElementById("con");
+	//Hide or show values as needed.
+	//We skip the first row since that row contains the labels.
+	for (var i = 1; i < table.rows.length; i++)
+	{
+		//We also skip the first column each time?  No, only once.  
+		for (var k = 0; k < table.rows[i].cells.length; k++)
+		{
+			var cell = table.rows[i].cells[k];
+			//Since all the IDs are numbers, if a cell contains a ":" that means it has a time, which means we skip it.
+			if(!cell.innerHTML.includes(":"))
+			{
+					//In the case that none are selected:
+				if(!nCon.checked && !con.checked)
+				{
+					cell.style.visibility = "hidden";
+				}
+				//In the case that the user only wants to see non conflict classes:
+				else if(nCon.checked && !con.checked)
+				{
+					if(cell.style.backgroundColor == "black")
+					{
+						cell.style.visibility = "hidden";
+					}
+					else
+					{
+						cell.style.visibility = "visible";
+					}
+				}
+				else if (!nCon.checked && con.checked)
+				{
+					if(cell.style.backgroundColor == "black")
+					{
+						cell.style.visibility = "visible";
+					}
+					else
+					{
+						cell.style.visibility = "hidden";
+					}
+				}
+				else
+				{
+					cell.style.visibility = "visible";
+				}
+			}
+			
+		}
+		
+	}
+}
