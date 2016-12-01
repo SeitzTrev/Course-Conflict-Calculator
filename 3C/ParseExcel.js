@@ -57,6 +57,8 @@ function fileHandler(files)
 var fileselect = document.getElementById("fileselect");
 fileselect.addEventListener('change', handleFile, false);
 
+var timeSegmentsGlobal;
+
 function main(workbook){
   var courses = parseCourseData(workbook);
   var timeSegments = createTimeSegments(courses);
@@ -148,6 +150,7 @@ function createTimeSegments(courses){
     }
   }
   
+  timeSegmentsGlobal = timeSegments;
   return timeSegments;
 }
 
@@ -158,11 +161,11 @@ function populateTable(timeSegments){
     // 300: "dd1",
     // 400: "dd1",
     // 500: "dd1"
-    100: "#95D595",
-    200: "#000064",
-    300: "#FCB930",
-    400: "#E50000",
-    500: "#F5F611"
+    100: "green",
+    200: "blue",
+    300: "yellow",
+    400: "purple",
+    500: "orange"
   };
   
   var levelIcons = {
@@ -192,7 +195,7 @@ function populateTable(timeSegments){
 		
         if (conflicts.length > 0){
           // tableCell.style.backgroundImage = "url(" + levelIcons[timeSegment.level] + ")";
-          tableCell.style.backgroundColor = "black";
+          tableCell.style.backgroundColor = "red";
           setRightBorder = true;
           setLeftBorder = true;
           tableCell.addEventListener("click", function(){displayCourseInfo(this);}, false);
@@ -226,7 +229,7 @@ function populateTable(timeSegments){
         var borderStyle = "thin solid black";
         
         //Set borders around courses
-        if (setRightBorder){
+       if (setRightBorder){
           tableCell.style.borderRight = borderStyle;
         }
         if(setLeftBorder){
@@ -238,7 +241,6 @@ function populateTable(timeSegments){
         if (setBottomBorder){
           tableCell.style.borderBottom = borderStyle;
         }
-        
       }
     }
   }
@@ -263,4 +265,14 @@ function displayCourseInfo(tableCell){
   
   var textbox = document.getElementById("courseInfoText");
   textbox.value = courseData;
+}
+
+function giveMeTime()
+{
+	return timeSegmentsGlobal;
+}
+
+function createBorders()
+{
+
 }

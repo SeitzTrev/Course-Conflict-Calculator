@@ -2,7 +2,7 @@
 			//cell formatting
 			function tableLabels(el){
 				el.style.textAlign = "center";
-				el.style.border= "2px solid #444444";
+				el.style.border= "2px solid black";
 				el.style.backgroundColor= "#BBBBBB";
 				el.style.height= "25px";
 				el.style.maxWidth= "70px";
@@ -21,7 +21,7 @@
 			
 			//cell formatting
 			function leftCells(el){
-				el.style.borderRight= "2px solid #444444";
+				el.style.borderRight= "2px solid black";
 				el.style.textAlign= "center";
 				el.style.minWidth= "13px";
 			}
@@ -29,15 +29,15 @@
 			//cell formatting
 			function bottomCells(el){
 // 				el.style.borderRight= "1px dotted #000000";
-				el.style.borderBottom= "2px solid #000000";
+				el.style.borderBottom= "2px solid black";
 				el.style.textAlign= "center";
 				el.style.minWidth= "14px";
 			}
 			
 			//cell formatting
 			function bottomLeftCells(el){
-				el.style.borderRight= "2px solid #000000";
-				el.style.borderBottom= "2px solid #000000";
+				el.style.borderRight= "2px solid black";
+				el.style.borderBottom= "2px solid black";
 				el.style.textAlign= "center";
 				el.style.minWidth= "13px";
 			}
@@ -98,10 +98,14 @@
 									//td.appendChild(document.createTextNode(ID));
 									tr.appendChild(td);
 									td.id= ID;
-									if(k == 4){
-										if(i == 11){
+									if(k == 4)
+									{
+										if(i == 11)
+										{
 											bottomLeftCells(td);
-										}else{
+										}
+										else
+										{
 											leftCells(td);
 										}
 									}else{
@@ -159,56 +163,235 @@
 			
 function updater()
 {
-//Load the table.
-	var table = document.getElementById("conCell").childNodes[0];
+//Load the table of time elements.
 	var nCon = document.getElementById("nCon");
 	var con = document.getElementById("con");
-	//Hide or show values as needed.
-	//We skip the first row since that row contains the labels.
-	for (var i = 1; i < table.rows.length; i++)
+	var timeSegments = giveMeTime();
+	var table = document.getElementById("conCell").childNodes[0];
+	var cell;
+	var index;
+	
+	var opCode;
+	
+	var levelColors = 
 	{
-		//We also skip the first column each time?  No, only once.  
-		for (var k = 0; k < table.rows[i].cells.length; k++)
+		// 100: "dd1",
+		// 200: "dd1",
+		// 300: "dd1",
+		// 400: "dd1",
+		// 500: "dd1"
+		100: "green",
+		200: "blue",
+		300: "yellow",
+		400: "purple",
+		500: "orange"
+		//There are a total of 204 time segments, in which each time segment contains an array of days, levels, and within the levels
+		//they contain the conflicts.
+		//there are 204 time segments.
+	}
+	for (var i = 0; i < timeSegments.time.length; i++)
+	{
+    // console.log("i: " + i);
+		for (var j = 0; j < timeSegments.time[0].day.length; j++)
 		{
-			var cell = table.rows[i].cells[k];
-			//Since all the IDs are numbers, if a cell contains a ":" that means it has a time, which means we skip it.
-			if(!cell.innerHTML.includes(":"))
+		// console.log("j: " + j);
+			for (var k = 0; k < timeSegments.time[0].day[0].level.length; k++)
 			{
-					//In the case that none are selected:
+				var setTopBorder = false;
+				var setBottomBorder = false;
+				var setLeftBorder = false;
+				var setRightBorder = false;
+				var timeSegment = timeSegments.time[i].day[j].level[k];
+				var index = timeSegment.tableIndex();
+				// console.log(index);
+				var tableCell = document.getElementById(index);
+				opCode = getOpCode(timeSegment);
+				var topbottomBorders = drawBorders(timeSegment, opCode);
+				var currentTop = tableCell.style.borderTop;
+				var currentBottom = tableCell.style.borderBottom;
+				var currentLeft = tableCell.style.borderLeft;
+				var currentRight = tableCell.style.borderRight;
+				var isColumn = false;
+				var isFloor = false;
+				var borderStyle = "thin solid black";
+				setTopBorder = topbottomBorders[0];
+				setBottomBorder = topbottomBorders[1];
+				//If the current borders are table borders, keep them that way.
+				//Issue with this is if the borders overlap the column.  How to solve?!?
+				if(index >= 8000)
+				{
+					isColumn = true;
+				}
+				if(currentBottom == "2px solid black")
+				{
+					isFloor = true;
+				}
+				
+			
 				if(!nCon.checked && !con.checked)
 				{
-					cell.style.visibility = "hidden";
+					tableCell.style.backgroundColor = "white";
+					setBottomBorder = false;
+					setTopBorder = false;
+					
+					
 				}
 				//In the case that the user only wants to see non conflict classes:
 				else if(nCon.checked && !con.checked)
 				{
-					if(cell.style.backgroundColor == "black")
+					if(timeSegment.nonConflictCourses.length > 0)
 					{
-						cell.style.visibility = "hidden";
+						tableCell.style.backgroundColor = levelColors[timeSegment.level];
+						 setRightBorder = true;
+						 setLeftBorder = true;
 					}
 					else
 					{
-						cell.style.visibility = "visible";
+						tableCell.style.backgroundColor = "white";
+						setBottomBorder = false;
+						setTopBorder = false;
 					}
 				}
 				else if (!nCon.checked && con.checked)
 				{
-					if(cell.style.backgroundColor == "black")
+					if(timeSegment.conflicts.length > 0)
 					{
-						cell.style.visibility = "visible";
+						 tableCell.style.backgroundColor = "red";
+						 setRightBorder = true;
+						 setLeftBorder = true;
 					}
 					else
 					{
-						cell.style.visibility = "hidden";
+						tableCell.style.backgroundColor = "white";
+						setBottomBorder = false;
+						setTopBorder = false;
 					}
+				}
+				else if (nCon.checked && con.checked)
+				{
+					if (timeSegment.nonConflictCourses.length > 0)
+					{
+						tableCell.style.backgroundColor = levelColors[timeSegment.level];
+						setRightBorder = true;
+						setLeftBorder = true;
+					}
+					if (timeSegment.conflicts.length > 0)
+					{
+						tableCell.style.backgroundColor = "red";
+						setRightBorder = true;
+						setLeftBorder = true;
+					}
+					
+				}
+				
+				
+				
+				if (setRightBorder)
+				{
+				  tableCell.style.borderRight = borderStyle;
+				}
+				else if (isColumn)
+				{
+					tableCell.style.borderRight = "2px solid black";
 				}
 				else
 				{
-					cell.style.visibility = "visible";
+					tableCell.style.borderRight = "";
+				}
+				if(setLeftBorder)
+				{
+				  tableCell.style.borderLeft = borderStyle;
+				}
+				else
+				{
+					tableCell.style.borderLeft = "";
+				}
+				if (setTopBorder)
+				{
+				  tableCell.style.borderTop = borderStyle;
+				}
+				else
+				{
+					tableCell.style.borderTop = "";
+				}
+				if (setBottomBorder)
+				{
+				  tableCell.style.borderBottom = borderStyle;
+				}
+				else if(isFloor)
+				{
+					tableCell.style.borderBottom = "2px solid black";
+				}
+				else
+				{
+					tableCell.style.borderBottom = "";
 				}
 			}
-			
 		}
 		
 	}
+}
+
+
+function drawBorders(timeSeg, opCode)
+{
+	var conflictsOrNot;
+	var arrayList = [false, false];
+	if (opCode == -1)
+	{
+	
+	}
+	else
+	{
+		if (opCode == 0)
+		{
+			 
+			   for (var l = 0; l < timeSeg.conflicts.length; l++)
+			   {
+					var courses = timeSeg.conflicts[l].getCourses();
+					for (var m = 0; m < courses.length; m++)
+					{
+						  if (courses[m].timeAsIndex("start") == timeSeg.startTime){
+							arrayList[0] = true;
+						  }
+						  if (courses[m].timeAsIndex("end") == timeSeg.startTime){
+							arrayList[1] = true;
+						  }
+					}
+			   }
+		}
+		else if (opCode == 1)
+		{
+			for (var l = 0; l < timeSeg.nonConflictCourses.length; l++)
+			{
+				if (timeSeg.nonConflictCourses[l].timeAsIndex("start") == timeSeg.startTime){
+				  arrayList[0] = true;
+				}
+				if (timeSeg.nonConflictCourses[l].timeAsIndex("end") == timeSeg.startTime){
+				  arrayList[1] = true;
+				}
+			}
+		}
+			
+	}
+	return arrayList;
+}
+
+function getOpCode(timeSeg)
+{
+	var opCode;
+	if (timeSeg.conflicts.length > 0)
+	{
+		opCode = 0;
+	}
+	else if (timeSeg.nonConflictCourses.length > 0)
+	{
+		opCode = 1;
+	}
+	else
+	{
+		opCode = -1;
+	}
+	
+	return opCode;
 }
