@@ -26,7 +26,9 @@ function Course(crn, courseNumber, level, courseTitle, crossList,
         var hour = Number(time.substring(0, time.indexOf(':')));
         
         if (time.toLowerCase().indexOf("p") != -1){
-            hour += 12;
+        	if (hour != 12){
+            	hour += 12;
+        	}
         }
         
         var minuteIndex = time.indexOf(':') + 1;
