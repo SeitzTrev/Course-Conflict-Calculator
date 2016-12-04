@@ -160,3 +160,43 @@ textarea
 	font-size: 13px;
 }
 
+#courseEditTable {
+	/*border: 1px solid black;*/
+	text-align: left;
+	background-color: darkblue;
+}
+
+.courseEdit {
+	height: 400px;
+	width: auto;
+	float: left;
+	margin-left: 7%;
+	margin-top: 2%;	
+	margin-bottom: 3%;
+}
+
+.courseEditHead{
+	
+}
+
+tbody{
+	overflow: auto;
+	height: 400px;
+}
+
+.courseEditRow {
+	border: 2px solid darkblue;
+	background-color: #AAAAFF;
+}
+
+.courseEditCell{
+	padding: 10px;
+}
+
+#editButtonDiv{
+	float: left;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	margin-left: 7%;
+}
+

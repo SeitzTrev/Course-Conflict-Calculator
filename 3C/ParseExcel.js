@@ -1,5 +1,14 @@
-/* set up drag-and-drop event */
+//Variables to drag and drop the files and allow 'drop' to detect these changes.
+var drop = document.getElementById("drop");
+drop.addEventListener('dragenter', handleDragover, false);
+drop.addEventListener('dragover', handleDragover, false);
+drop.addEventListener('drop', handleDrop, false);
 
+var fileselect = document.getElementById("fileselect");
+fileselect.addEventListener('change', handleFile, false);
+
+var timeSegmentsGlobal;
+var coursesGlobal;
 
 
 function handleDrop(e) {
@@ -15,12 +24,6 @@ function handleDragover(e) {
 	e.preventDefault();
 	e.dataTransfer.dropEffect = 'copy';
 }
-
-//Variables to drag and drop the files and allow 'drop' to detect these changes.
-var drop = document.getElementById("drop");
-drop.addEventListener('dragenter', handleDragover, false);
-drop.addEventListener('dragover', handleDragover, false);
-drop.addEventListener('drop', handleDrop, false);
 
 function handleFile(e) {
   var files = e.target.files;
@@ -53,16 +56,10 @@ function fileHandler(files)
 		}
 }
 
-
-var fileselect = document.getElementById("fileselect");
-fileselect.addEventListener('change', handleFile, false);
-
-var timeSegmentsGlobal;
-
 function main(workbook){
   var courses = parseCourseData(workbook);
-  var timeSegments = createTimeSegments(courses);
-  populateTable(timeSegments);
+  populateTable(courses);
+  createCourseEditTable(courses);
 }
 
 //Read all course data from excel file
@@ -109,6 +106,7 @@ function parseCourseData(workbook){
       }
     }
     
+    coursesGlobal = courses;
     return courses;
 }
 
@@ -154,7 +152,9 @@ function createTimeSegments(courses){
   return timeSegments;
 }
 
-function populateTable(timeSegments){
+function populateTable(courses){
+  var timeSegments = createTimeSegments(courses);
+  
   var levelColors = {
     // 100: "dd1",
     // 200: "dd1",
@@ -270,6 +270,10 @@ function displayCourseInfo(tableCell){
 function giveMeTime()
 {
 	return timeSegmentsGlobal;
+}
+
+function getCourses(){
+  return coursesGlobal;
 }
 
 function createBorders()

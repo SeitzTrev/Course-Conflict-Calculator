@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8"/>
 		<title>Course Conflict Calculator<br>*3C*</title>
-		<link rel = "stylesheet" href = "3C Web Utility.css" type = "text/css" title = "float layout style">
-		<script type="text/javascript" src="3C Web Utility.js"></script>
+		<link rel = "stylesheet" href = "3CWebUtility.css" type = "text/css" title = "float layout style">
+		<script type="text/javascript" src="3CWebUtility.js"></script>
 		<script lang="javascript" src="js-xlsx-master/dist/xlsx.core.min.js"></script>
 	</head>
 	<body>
@@ -14,7 +14,7 @@
 				<nav>
 					<ul>
 						<li><a href="3c_homepage.html">Home</a></li>
-						<li><a href="3C Web Utility.html">3C Calculator</a></li>
+						<li><a href="3CWebUtility.html">3C Calculator</a></li>
 						<!--<li><a href="http://www.ipfw.edu">IPFW</a></li>-->
 					</ul>
 				</nav>
@@ -34,8 +34,8 @@
 			<!--Text area to display conficts as text and other toggles-->
 			<div class = "info">
 				<div class = "toggles">
-					<label class = "checkbox"><input type = "checkbox" id = "nCon" onclick="updatePage()"/> Non Conflicts </label>
-					<label class = "checkbox"><input type = "checkbox" id = "con" onclick="updatePage()"/> Conflicts </label>
+					<label class = "checkbox"><input type = "checkbox" id = "nCon" onclick="updatePage()" checked/> Non Conflicts </label>
+					<label class = "checkbox"><input type = "checkbox" id = "con" onclick="updatePage()" checked/> Conflicts </label>
 				</div>
 				<div class = "conflicts">
 					<textarea id = "courseInfoText" disabled>
@@ -51,6 +51,10 @@
 					<p>Conflicts: Black, Level 100 Courses: Green, Level 200 Courses: Blue, Level 300 Courses: Orange, Level 400 Courses: Red,
 					Level 500 Courses: Yellow</p></b>
 				</div>
+				
+			</div>
+			<div id = "editButtonDiv"></div>
+			<div id = "courseEdit" class = "courseEdit">
 			</div>
 		</div>
 		
@@ -58,6 +62,7 @@
 		<script src="Conflict.js"></script>
 		<script src="TimeSegment.js"></script>
 		<script src="ParseExcel.js"></script>
+		<script src="EditCourses.js"></script>
 		
 	</body>
 	<script>
