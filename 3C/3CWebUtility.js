@@ -247,6 +247,7 @@ function updater()
 				//If it's a block, we draw the left/right borders.
 				if(opCode == 0 || opCode == 1)
 				{
+					tableCell.addEventListener("click", cellListener, false);
 					borders[0] = true;
 					borders[1] = true;
 					borders[2] = topbottomBorders[0];
@@ -258,11 +259,13 @@ function updater()
 					else
 					{
 						color = levelColors[timeSegment.level];
+						
 					}
 				}
 				else
 				{
 					color = "white";
+					tableCell.removeEventListener("click", cellListener, false);
 				}
 				
 				//set the color				
