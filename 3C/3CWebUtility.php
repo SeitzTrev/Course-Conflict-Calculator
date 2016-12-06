@@ -1,3 +1,12 @@
+<?php
+	session_start();
+	if(!$_SESSION['loggedIn'])
+	{
+		header('Location: 3CverifyUser.php');
+		exit;
+	}
+	?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,7 +23,7 @@
 				<nav>
 					<ul>
 						<li><a href="3c_homepage.html">Home</a></li>
-						<li><a href="3CWebUtility.html">3C Calculator</a></li>
+						<li><a href="3CWebUtility.php">3C Calculator</a></li>
 						<!--<li><a href="http://www.ipfw.edu">IPFW</a></li>-->
 					</ul>
 				</nav>
@@ -73,6 +82,12 @@
 		updater();
 	}
 
-	
+	function logout()
+	{
+		<?php 
+		session_unset();
+		session_destroy();
+		?>
+	}
 	</script>
 </html>
