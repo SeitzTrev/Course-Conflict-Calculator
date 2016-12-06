@@ -119,6 +119,7 @@ textarea
 	margin-top: 2%;
 	margin-left: 7%; 
 	margin-right: 2%; 
+	margin-bottom: 1%;
 	float: left;
 	min-width: 500px;
 	width:40%
@@ -127,7 +128,7 @@ textarea
 .info
 {
 	margin-top: 2%;
-	margin-bottom: 2%;
+	margin-bottom: 1%;
 	margin-left: 0%;
 	margin-right: 7%;
 	width: 40%;
@@ -163,25 +164,15 @@ textarea
 #courseEditTable {
 	/*border: 1px solid black;*/
 	text-align: left;
-	background-color: darkblue;
 }
 
 .courseEdit {
-	height: 400px;
-	width: auto;
+	width: 87%;
 	float: left;
 	margin-left: 7%;
-	margin-top: 2%;	
+	margin-right: 6%;
 	margin-bottom: 3%;
-}
-
-.courseEditHead{
-	
-}
-
-tbody{
-	overflow: auto;
-	height: 400px;
+	clear: both;
 }
 
 .courseEditRow {
@@ -193,10 +184,27 @@ tbody{
 	padding: 10px;
 }
 
-#editButtonDiv{
-	float: left;
-	margin-top: 2%;
-	margin-bottom: 2%;
-	margin-left: 7%;
+.courseEditBody{
+	display: block;
+	height: 400px;
+	width: 820px;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
+.courseEditHead{
+	width: 823px;
+	display: block;
+	overflow: auto;
+}
+
+#editCourseDisplayButton{
+	display: inline-block;
+	height: 90px;
+	width: 150px;
+	font-size: 30px;
+	font-weight: bold;
+	float: left;
+	margin-top: 1%;
+	clear: both;
+}

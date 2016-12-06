@@ -152,6 +152,9 @@ function createTimeSegments(courses){
   return timeSegments;
 }
 
+var cellListener = function(event){
+  displayCourseInfo(event.currentTarget);
+};
 function populateTable(courses){
   var timeSegments = createTimeSegments(courses);
   
@@ -198,7 +201,8 @@ function populateTable(courses){
           tableCell.style.backgroundColor = "red";
           setRightBorder = true;
           setLeftBorder = true;
-          tableCell.addEventListener("click", function(){displayCourseInfo(this);}, false);
+          tableCell.addEventListener("click", cellListener, false);
+          // tableCell.removeEventListener("click", cellListener, false);
           for (var l = 0; l < conflicts.length; l++){
             var courses = conflicts[l].getCourses();
             for (var m = 0; m < courses.length; m++){
@@ -215,7 +219,8 @@ function populateTable(courses){
           tableCell.style.backgroundColor = levelColors[timeSegment.level];
           setRightBorder = true;
           setLeftBorder = true;
-          tableCell.addEventListener("click", function(){displayCourseInfo(this);}, false);
+          tableCell.addEventListener("click", cellListener, false);
+          // tableCell.removeEventListener("click", cellListener, false);
           for (var l = 0; l < nonConflictCourses.length; l++){
             if (nonConflictCourses[l].timeAsIndex("start") == timeSegment.startTime){
               setTopBorder = true;
@@ -276,6 +281,9 @@ function getCourses(){
   return coursesGlobal;
 }
 
+function getCellListener(){
+  return cellListener;
+}
 function createBorders()
 {
 

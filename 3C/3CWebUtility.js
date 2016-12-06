@@ -52,7 +52,7 @@
 				tbl.classList.add('courseDisplayTable');
 				
 				tbl.style.maxWidth = "500px";
-				tbl.style.backgroundColor = "white"
+				tbl.style.backgroundColor = "white";
 				tbl.style.borderSpacing = "0";
 				tbl.style.textAlign = "center"
 				tbl.style.marginLeft = "auto";
@@ -174,6 +174,8 @@ function updater()
 	
 	var opCode;
 	
+	var cellListener = getCellListener();
+	
 	var levelColors = 
 	{
 		// 100: "dd1",
@@ -232,6 +234,7 @@ function updater()
 				if(!nCon.checked && !con.checked)
 				{
 					tableCell.style.backgroundColor = "white";
+					tableCell.removeEventListener("click", cellListener, false);
 					setBottomBorder = false;
 					setTopBorder = false;
 					
@@ -243,12 +246,14 @@ function updater()
 					if(timeSegment.nonConflictCourses.length > 0)
 					{
 						tableCell.style.backgroundColor = levelColors[timeSegment.level];
+						tableCell.addEventListener("click", cellListener, false);
 						 setRightBorder = true;
 						 setLeftBorder = true;
 					}
 					else
 					{
 						tableCell.style.backgroundColor = "white";
+						tableCell.removeEventListener("click", cellListener, false);
 						setBottomBorder = false;
 						setTopBorder = false;
 					}
@@ -258,6 +263,7 @@ function updater()
 					if(timeSegment.conflicts.length > 0)
 					{
 						 tableCell.style.backgroundColor = "red";
+						 tableCell.addEventListener("click", cellListener, false);
 						 setRightBorder = true;
 						 setLeftBorder = true;
 					}
@@ -266,6 +272,7 @@ function updater()
 						tableCell.style.backgroundColor = "white";
 						setBottomBorder = false;
 						setTopBorder = false;
+						tableCell.removeEventListener("click", cellListener, false);
 					}
 				}
 				else if (nCon.checked && con.checked)
@@ -273,12 +280,14 @@ function updater()
 					if (timeSegment.nonConflictCourses.length > 0)
 					{
 						tableCell.style.backgroundColor = levelColors[timeSegment.level];
+						tableCell.addEventListener("click", cellListener, false);
 						setRightBorder = true;
 						setLeftBorder = true;
 					}
 					if (timeSegment.conflicts.length > 0)
 					{
 						tableCell.style.backgroundColor = "red";
+						tableCell.addEventListener("click", cellListener, false);
 						setRightBorder = true;
 						setLeftBorder = true;
 					}

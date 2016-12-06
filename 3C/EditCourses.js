@@ -1,4 +1,3 @@
-
 var hours = [];
 for (var i = 1; i < 13; i++){
     if (i < 10){
@@ -15,29 +14,37 @@ for (var i = 10; i < 60; i += 5){
     minutes.push(i + "");
 }
 
-
 function createCourseEditTable(courses){
-    var editButtonDiv = document.getElementById("editButtonDiv");
+    var editCourseHeader = document.createElement("h2");
+    editCourseHeader.appendChild(document.createTextNode("Edit Courses"));
+    editCourseHeader.id = "editCourseHeader";
+    editCourseHeader.style.textAlign = "left";
+    
     var editCourseDisplayTableButton = document.createElement("input");
+    editCourseDisplayTableButton.id = "editCourseDisplayButton";
     editCourseDisplayTableButton.type = "submit";
     editCourseDisplayTableButton.innerHTML = "Update courses";
     editCourseDisplayTableButton.addEventListener("click", editCourseDisplayTable(courses));
-    editButtonDiv.appendChild(editCourseDisplayTableButton);
     
     var courseEditDiv = document.getElementById("courseEdit");
+    courseEditDiv.appendChild(editCourseHeader);
+    // courseEditDiv.appendChild(document.createElement("br"));
     
     var table = document.createElement("table");
     table.classList.add("courseEditTable");
     table.id = "courseEditTable";
     
     var tableHead = document.createElement("thead");
+    tableHead.classList.add("courseEditHead");
     
-    var headers = ["Name", "Start Time", "End Time"];
+    var headers = ["Name", "Start Time", "End Time", "Days"];
+    var headerSizes = ["322", "165", "165", "142"];
     
     for (var i = 0; i < headers.length; i++){
         var th = document.createElement("th");
         th.classList.add("courseEditRow");
         th.classList.add("courseEditCell");
+        th.width = headerSizes[i];
         var textNode = document.createTextNode(headers[i]);
         th.appendChild(textNode);
         tableHead.appendChild(th);
@@ -46,6 +53,7 @@ function createCourseEditTable(courses){
     table.appendChild(tableHead);
     
     var tableBody = document.createElement("tbody");
+    tableBody.classList.add("courseEditBody");
     
     for (var i = 0; i < courses.length; i++){
         var tr = document.createElement("tr");
@@ -59,16 +67,37 @@ function createCourseEditTable(courses){
         courseNametd.appendChild(courseNametext);
         tr.appendChild(courseNametd);
         
-        
         trAppendTimeSelect(tr, courses[i].startTime);
         
         trAppendTimeSelect(tr, courses[i].endTime);
+        
+        var daystd = document.createElement("td");
+        daystd.classList.add("daystd");
+        var days = ["M", "T", "W", "R", "F"];
+        
+        for (var j = 0; j < days.length; j++){
+            var checkTextNode = document.createTextNode(days[j]);
+            daystd.appendChild(checkTextNode);
+            
+            var checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.value = days[j];
+            
+            
+            if (courses[i].days.includes(days[j])){
+                checkbox.checked = true;
+            }
+            daystd.appendChild(checkbox);
+        }
+        tr.appendChild(daystd);
         
         tableBody.appendChild(tr);
     }
     
     table.appendChild(tableBody);
     courseEditDiv.appendChild(table);
+    courseEditDiv.appendChild(editCourseDisplayTableButton);
+    
 }
 
 function trAppendTimeSelect(tr, time){
