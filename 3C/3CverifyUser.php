@@ -1,57 +1,57 @@
 <?php
-session_start();
+	session_start();
 
-//Use whatever database name you want here, just import the sql table i provided into xampp or cloud9.
-$cccdb = 'CCC_DB';
-$conn = requireOnce($cccdb);
+	//Use whatever database name you want here, just import the sql table i provided into xampp or cloud9.
+	$cccdb = 'CCC_DB';
+	$conn = requireOnce($cccdb);
 
-if(isset($_POST['user']) and isset($_POST['pass']))
-{
-	$user = $_POST['user'];
-	$pass = $_POST['pass'];
-	
-	$passwordQuery = "SELECT * FROM ccc_userdb WHERE username = '$user' and password = '$pass'";
-
-	$result = $conn->query($passwordQuery);
-	
-	if($result == false)
+	if(isset($_POST['user']) and isset($_POST['pass']))
 	{
-		$error = true;
-	}
-	else
-	{
-		//If there is exactly 1 row, user is authenticated.
-		$count = mysqli_num_rows($result);
-	
-		if($count == 1)
-		{
-			$_SESSION['authenticated'] = true;
-			header('Location: 3c_homepage.html');
-		}
-		else
+		$user = $_POST['user'];
+		$pass = $_POST['pass'];
+		
+		$passwordQuery = "SELECT * FROM ccc_userdb WHERE username = '$user' and password = '$pass'";
+
+		$result = $conn->query($passwordQuery);
+		
+		if($result == false)
 		{
 			$error = true;
 		}
+		else
+		{
+			//If there is exactly 1 row, user is authenticated.
+			$count = mysqli_num_rows($result);
+		
+			if($count == 1)
+			{
+				$_SESSION['loggedIn'] = true;
+				header('Location: 3CWebUtility.php');
+			}
+			else
+			{
+				$error = true;
+			}
+		}
 	}
-}
 
-function requireOnce($database)
-{
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $database);
-
-	// Check connection
-	if ($conn->connect_error)
+	function requireOnce($database)
 	{
-		die("Connection failed: " .$conn->connect_error);
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+		
+		// Create connection
+		$conn = new mysqli($servername, $username, $password, $database);
+
+		// Check connection
+		if ($conn->connect_error)
+		{
+			die("Connection failed: " .$conn->connect_error);
+		}
+		
+		return $conn;
 	}
-	
-	return $conn;
-}
 ?> 
 
 
