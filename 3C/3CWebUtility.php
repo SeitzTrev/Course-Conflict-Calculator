@@ -1,8 +1,9 @@
 <?php
 	session_start();
-	if(!$_SESSION['loggedIn')
+	
+	if(!$_SESSION['authenticated'])
 	{
-		header:("Location: 3CverifyUser.php");
+		header("Location: 3CverifyUser.php");
 		exit;
 	}
 ?>
@@ -16,7 +17,7 @@
 		<script type="text/javascript" src="3CWebUtility.js"></script>
 		<script lang="javascript" src="js-xlsx-master/dist/xlsx.core.min.js"></script>
 	</head>
-	<body onbeforereload="logout()">
+	<body onbeforeunload ="logout()">
 		<div>
 			<header class="banner">
 				<section class="logo">Course Conflict Calculator Home</section><br/>

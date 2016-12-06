@@ -25,7 +25,7 @@
 		
 			if($count == 1)
 			{
-				$_SESSION['loggedIn'] = true;
+				$_SESSION['authenticated'] = true;
 				header('Location: 3CWebUtility.php');
 			}
 			else
