@@ -25,8 +25,8 @@ if(isset($_POST['user']) and isset($_POST['pass']))
 	
 		if($count == 1)
 		{
-			$_SESSION['loggedIn'] = true;
-			header('Location: 3CWebUtility.php');
+			$_SESSION['authenticated'] = true;
+			header('Location: 3c_homepage.html');
 		}
 		else
 		{
