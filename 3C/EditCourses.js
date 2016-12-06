@@ -167,8 +167,16 @@ function editCourseDisplayTable(courses){
             var endTimeElements = tr.childNodes[2].childNodes;
             var endTime = combineTimeElements(endTimeElements);
             
+            var dayCheckboxes = tr.childNodes[3].childNodes;
+            var days = "";
+            for (var j = 0; j < dayCheckboxes.length; j++){
+                if (dayCheckboxes[j].checked){
+                    days += dayCheckboxes[j].value;
+                }
+            }
+            
             courses[i] = new Course(courses[i].crn, courses[i].courseNumber, courses[i].level, courses[i].courseTitle, 
-                                    courses[i].crossList, courses[i].type, courses[i].days, startTime, endTime,
+                                    courses[i].crossList, courses[i].type, days, startTime, endTime,
                                     courses[i].room, courses[i].instructor);
         }
         populateTable(courses);
