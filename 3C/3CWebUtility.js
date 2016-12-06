@@ -164,18 +164,11 @@
 			
 function updater()
 {
-//Load the table of time elements.
 	var nCon = document.getElementById("nCon");
 	var con = document.getElementById("con");
 	var timeSegments = giveMeTime();
 	var table = document.getElementById("conCell").childNodes[0];
-	var cell;
-	var index;
-	
-	var opCode;
-	
 	var cellListener = getCellListener();
-	
 	var levelColors = 
 	{
 		// 100: "dd1",
@@ -200,25 +193,17 @@ function updater()
 		// console.log("j: " + j);
 			for (var k = 0; k < timeSegments.time[0].day[0].level.length; k++)
 			{
-				var setTopBorder = false;
-				var setBottomBorder = false;
-				var setLeftBorder = false;
-				var setRightBorder = false;
+				
 				var timeSegment = timeSegments.time[i].day[j].level[k];
 				var index = timeSegment.tableIndex();
 				// console.log(index);
 				var tableCell = document.getElementById(index);
-				opCode = getOpCode(timeSegment);
-				var topbottomBorders = drawBorders(timeSegment, opCode);
-				var currentTop = tableCell.style.borderTop;
+				var opCode = getOpCode(timeSegment);
+				
 				var currentBottom = tableCell.style.borderBottom;
-				var currentLeft = tableCell.style.borderLeft;
-				var currentRight = tableCell.style.borderRight;
+
 				var isColumn = false;
 				var isFloor = false;
-				var borderStyle = "thin solid black";
-				setTopBorder = topbottomBorders[0];
-				setBottomBorder = topbottomBorders[1];
 				//If the current borders are table borders, keep them that way.
 				//Issue with this is if the borders overlap the column.  How to solve?!?
 				if(index >= 8000)
@@ -230,107 +215,103 @@ function updater()
 					isFloor = true;
 				}
 				
-			
+				//using the opCode, we determien if we need to switch anything off.
+				//-1: blank 0: conflict 1: nonconflict
 				if(!nCon.checked && !con.checked)
 				{
-					tableCell.style.backgroundColor = "white";
-					tableCell.removeEventListener("click", cellListener, false);
-					setBottomBorder = false;
-					setTopBorder = false;
-					
+					opCode = -1;
 					
 				}
-				//In the case that the user only wants to see non conflict classes:
+				//If there are any conflicts, we turn them off.
 				else if(nCon.checked && !con.checked)
 				{
-					if(timeSegment.nonConflictCourses.length > 0)
+					if(opCode == 0)
 					{
-						tableCell.style.backgroundColor = levelColors[timeSegment.level];
-						tableCell.addEventListener("click", cellListener, false);
-						 setRightBorder = true;
-						 setLeftBorder = true;
-					}
-					else
-					{
-						tableCell.style.backgroundColor = "white";
-						tableCell.removeEventListener("click", cellListener, false);
-						setBottomBorder = false;
-						setTopBorder = false;
+						opCode = -1;	
 					}
 				}
+				//if there are any nonconflicts, we turn them off.
 				else if (!nCon.checked && con.checked)
 				{
-					if(timeSegment.conflicts.length > 0)
+					if(opCode == 1)
 					{
-						 tableCell.style.backgroundColor = "red";
-						 tableCell.addEventListener("click", cellListener, false);
-						 setRightBorder = true;
-						 setLeftBorder = true;
+						opCode = -1;
+					}
+				}
+				//create border array.
+				//0 = right, 1 = left, 2 = up, 3 = bottom
+				var borders = [false, false, false, false];
+				
+				var topbottomBorders = drawBorders(timeSegment, opCode);
+				var color;
+				//If it's a block, we draw the left/right borders.
+				if(opCode == 0 || opCode == 1)
+				{
+					borders[0] = true;
+					borders[1] = true;
+					borders[2] = topbottomBorders[0];
+					borders[3] = topbottomBorders[1];
+					if(opCode == 0)
+					{
+						color = "red";
 					}
 					else
 					{
-						tableCell.style.backgroundColor = "white";
-						setBottomBorder = false;
-						setTopBorder = false;
-						tableCell.removeEventListener("click", cellListener, false);
+						color = levelColors[timeSegment.level];
 					}
 				}
-				else if (nCon.checked && con.checked)
+				else
 				{
-					if (timeSegment.nonConflictCourses.length > 0)
-					{
-						tableCell.style.backgroundColor = levelColors[timeSegment.level];
-						tableCell.addEventListener("click", cellListener, false);
-						setRightBorder = true;
-						setLeftBorder = true;
-					}
-					if (timeSegment.conflicts.length > 0)
-					{
-						tableCell.style.backgroundColor = "red";
-						tableCell.addEventListener("click", cellListener, false);
-						setRightBorder = true;
-						setLeftBorder = true;
-					}
-					
+					color = "white";
 				}
 				
+				//set the color				
+				tableCell.style.backgroundColor = color;
 				
+				//draw borders.
+				//0: right 1: left 2: top 3: bottom
+				var blockBorder = "thin solid black";
+				var tableBorder = "2px solid black";
 				
-				if (setRightBorder)
+				if(borders[0])
 				{
-				  tableCell.style.borderRight = borderStyle;
+					tableCell.style.borderRight = blockBorder;
 				}
-				else if (isColumn)
+				else if(isColumn)
 				{
-					tableCell.style.borderRight = "2px solid black";
+					tableCell.style.borderRight = tableBorder;
 				}
 				else
 				{
 					tableCell.style.borderRight = "";
 				}
-				if(setLeftBorder)
+				
+				
+				if(borders[1])
 				{
-				  tableCell.style.borderLeft = borderStyle;
+				  tableCell.style.borderLeft = blockBorder;
 				}
 				else
 				{
 					tableCell.style.borderLeft = "";
 				}
-				if (setTopBorder)
+				
+				if (borders[2])
 				{
-				  tableCell.style.borderTop = borderStyle;
+				  tableCell.style.borderTop = blockBorder;
 				}
 				else
 				{
 					tableCell.style.borderTop = "";
 				}
-				if (setBottomBorder)
+				
+				if (borders[3])
 				{
-				  tableCell.style.borderBottom = borderStyle;
+				  tableCell.style.borderBottom = blockBorder;
 				}
 				else if(isFloor)
 				{
-					tableCell.style.borderBottom = "2px solid black";
+					tableCell.style.borderBottom = tableBorder;
 				}
 				else
 				{
@@ -338,7 +319,6 @@ function updater()
 				}
 			}
 		}
-		
 	}
 }
 
