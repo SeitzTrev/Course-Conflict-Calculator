@@ -39,8 +39,7 @@ function Course(crn, courseNumber, level, courseTitle, crossList,
     }
     
     this.toString = function(){
-        return this.courseNumber + " " + this.courseTitle + ",\n" + this.startTime + ", " + this.endTime + ", " + this.days;
-        // + "start: " + this.timeAsIndex("start") + ", end: " + this.timeAsIndex("end");
+        return this.courseNumber + " " + this.courseTitle + " " + this.startTime + "-" + this.endTime + " " + this.days;
     }
 }
 

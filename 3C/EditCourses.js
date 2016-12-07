@@ -27,8 +27,11 @@ function createCourseEditTable(courses){
     editCourseDisplayTableButton.addEventListener("click", editCourseDisplayTable(courses));
     
     var courseEditDiv = document.getElementById("courseEdit");
+    while (courseEditDiv.firstChild){
+        courseEditDiv.removeChild(courseEditDiv.firstChild);
+    }
+    
     courseEditDiv.appendChild(editCourseHeader);
-    // courseEditDiv.appendChild(document.createElement("br"));
     
     var table = document.createElement("table");
     table.classList.add("courseEditTable");

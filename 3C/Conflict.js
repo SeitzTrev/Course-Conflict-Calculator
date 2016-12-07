@@ -10,14 +10,14 @@ function Conflict(course1, course2, day, startTime, endTime){
             return true;
         }
         return false;
-    }
+    };
     
     this.toString = function(){
-        return "Conflict: Day: " + this.day + "\n" + course1.toString() + "\n" + course2.toString();
-    }
+        return "Conflict:\n\n" + course1.toString() + "\n\n" + course2.toString();
+    };
     
     this.getCourses = function(){
         return new Array(course1, course2);
-    }
+    };
 }
 

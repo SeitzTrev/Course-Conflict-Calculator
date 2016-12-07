@@ -57,6 +57,7 @@ function fileHandler(files)
 }
 
 function main(workbook){
+  tableCreate();
   var courses = parseCourseData(workbook);
   populateTable(courses);
   createCourseEditTable(courses);
