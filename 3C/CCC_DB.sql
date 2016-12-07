@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 03, 2016 at 10:11 PM
+-- Host: localhost
+-- Generation Time: Dec 06, 2016 at 07:11 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -17,8 +17,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ccc_db`
+-- Database: `CCC_DB`
 --
+CREATE DATABASE IF NOT EXISTS `CCC_DB` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `CCC_DB`;
 
 -- --------------------------------------------------------
 
